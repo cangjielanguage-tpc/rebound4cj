@@ -1,0 +1,13 @@
+{
+  "module": {
+    "name": "rebound",
+    "type": "feature",
+    "description": "$string:module_desc",
+    "mainElement": "CangjieAbility",
+    "deviceTypes": [
+      "phone"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false
+  }
+}

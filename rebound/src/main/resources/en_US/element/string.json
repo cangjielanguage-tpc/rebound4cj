@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "Greendao_coreAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "Greendao_coreAbility_label",
+      "value": "label"
+    }
+  ]
+}
