@@ -1,126 +1,77 @@
 <div align="center">
-<h1>库名</h1>
+<h1>rebound4ohos</h1>
 </div>
 
 <p align="center">
 <img alt="" src="https://img.shields.io/badge/release-v0.0.1-brightgreen" style="display: inline-block;" />
 <img alt="" src="https://img.shields.io/badge/build-pass-brightgreen" style="display: inline-block;" />
-<img alt="" src="https://img.shields.io/badge/cjc-v0.30.4-brightgreen" style="display: inline-block;" />
-<img alt="" src="https://img.shields.io/badge/cjcov-50%25-red" style="display: inline-block;" />
+<img alt="" src="https://img.shields.io/badge/cjc-v0.51.4-brightgreen" style="display: inline-block;" />
+<img alt="" src="https://img.shields.io/badge/cjcov-90.6%25-brightgreen" style="display: inline-block;" />
 <img alt="" src="https://img.shields.io/badge/project-open-brightgreen" style="display: inline-block;" />
 </p>
 
 ## 介绍
 
-介绍库或者框架符合的标准，应用领域，解决什么问题。有哪些主要的特点，与同类库相比有哪些优点。
+本项目基于开源库 https://github.com/facebookarchive/rebound
+
+rebound4ohos 是一个模拟弹簧动力学，用于驱动物理动画的库。
 
 ### 特性
 
-- 🚀 特性1
-
-- 🚀 特性2
-
-- 💪 特性3
-
-- 🛠️ 特性4
-
-- 🌍 特性5
-
-- 💡  特性6
-
-### 路线
-
-<p align="center">
-<img src="./doc/assets/milestone.png" width="100%" >
-</p>
-路线图roadmap在 doc/framework-roadmap-logo.pptx 中有源文件。
-
-
-## 软件架构
-
-### 架构图
-
-<p align="center">
-<img src="./doc/assets/framework.png" width="60%" >
-</p>
-
-架构图文字说明，包括模块说明、架构层次等详细说明。
+- 🚀 创建弹簧对象，设置弹簧树形，实现弹簧动画效果
 
 ### 源码目录
 
 ```shell
-├── README.md              #整体介绍
-├── doc                    #文档目录，包括设计文档，API接口文档等
-│   ├── cjcov              #覆盖率信息
-│   ├── design.md          #整体设计文档
-│   └── feature_api.md     #API接口文档
-├── src                    #源码目录
-│   └── Template.cj        #描述关键代码文件的功能
-└── test                   #测试代码目录
-    ├── HLT
-    └── LLT
+.
+├─AppScope
+├─doc
+├─entry
+│  └─src
+│      └─main
+│          ├─cangjie
+│          └─resources
+├─hvigor
+├─rebound
+│  └─src
+│      └─main
+│          ├─cangjie
+│            └─src
+│                └─rebound
+
 ```
+
+- `AppScope` 全局资源存放目录和应用全局信息配置目录
+- `doc` API文档和使用手册存放目录
+- `entry` 工程模块 - 编译生成一个HAP
+- `entry src` APP代码目录
+- `entry src main` APP项目目录
+- `entry src main cangjie` 仓颉代码目录
+- `entry src main resources` 资源文件目录
+- `rebound` 工程模块 - 编译生成一个har包
+- `rebound src` 模块代码目录
+- `rebound src main` 模块项目目录
+- `rebound src main cangjie` 仓颉代码目录
+- `rebound src main cangjie src rebound` markdown UI页面目录
+- `hvigor` 构建工具目录
 
 ### 接口说明
 
-主要类和函数接口说明详见 [API](./doc/api.md)
-
+主要类和函数接口说明详见 [API](doc/feature_api.md)
 
 ## 使用说明
 
 ### 编译构建
 
-描述具体的编译过程：
-
-```shell
-cpm update
-cpm build
-```
-
 ### 功能示例
-#### xxx 功能示例
 
-功能示例描述:
-
-示例代码如下：
-
-```cangjie
-import xxx.*
-main() {
- xxxx
-}
-```
-
-执行结果如下：
-
-```shell
-xxx
-```
-
-#### xxx 功能示例
-
-功能示例描述:
-
-示例代码如下：
-
-```cangjie
-import xxx.*
-main() {
- xxxx
-}
-```
-
-执行结果如下：
-
-```shell
-xxx
-```
+**entry -> src -> main -> cangjie -> src 目录下 ar_ 开头cj文件的都是使用用例，运行可以直接展示页面效果。**
 
 ## 约束与限制
-描述环境限制，版本限制，依赖版本等
 
 ## 开源协议
-xxx License
+
+[LICENSE](/LICENSE)
 
 ## 参与贡献
 
