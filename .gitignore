@@ -27,3 +27,5 @@ test_temp
 *.cjo
 *.gcda
 *.gcno
+**/ability_mainability_entry.cj
+**/module_**_entry.cj

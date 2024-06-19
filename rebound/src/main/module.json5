@@ -1,13 +1,9 @@
 {
   "module": {
     "name": "rebound",
-    "type": "feature",
-    "description": "$string:module_desc",
-    "mainElement": "CangjieAbility",
+    "type": "har",
     "deviceTypes": [
-      "phone"
-    ],
-    "deliveryWithInstall": true,
-    "installationFree": false
+      "default"
+    ]
   }
 }
