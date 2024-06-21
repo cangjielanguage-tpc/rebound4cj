@@ -26,7 +26,7 @@ public class TestSpring {
         let id = s.getId()
         @Assert(id, "spring:0")
         try {
-            s.setSpringConfig(None)
+            s.setSpringConfig(SpringConfig(10.0, 11.0))
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -80,8 +80,9 @@ public class TestSpring {
         @Assert(b5, false)
         s.setAtRest()
         @Assert(s.isAtRest(), true)
+        let lis: MySpringSystemListener2 = MySpringSystemListener2()
         try {
-            s.addListener(None)
+            s.addListener(lis)
         } catch (e: IllegalArgumentException) {
             println(e.printStackTrace())
         }
@@ -116,7 +117,7 @@ public class TestSpring {
         let lis: MySpringSystemListener2 = MySpringSystemListener2()
         s.addListener(lis)
         try {
-            s.removeListener(None)
+            s.removeListener(lis)
         } catch (e: IllegalArgumentException) {
             println(e.printStackTrace())
         }

@@ -60,11 +60,8 @@ public class Spring <: Hashable & Equatable<Spring> {
         return mId
     }
 
-    public func setSpringConfig(springConfig: ?SpringConfig): Spring {
-        if (springConfig.isNone()) {
-            throw IllegalArgumentException("springConfig is required")
-        }
-        mSpringConfig = springConfig.getOrThrow()
+    public func setSpringConfig(springConfig: SpringConfig): Spring {
+        mSpringConfig = springConfig
         return this
     }
 
@@ -280,19 +277,13 @@ public class Spring <: Hashable & Equatable<Spring> {
         mCurrentState.velocity = mCurrentState.velocity * alpha + mPreviousState.velocity * (1.0 - alpha)
     }
 
-    public func addListener(newListener: ?SpringListener): Spring {
-        if (newListener.isNone()) {
-            throw IllegalArgumentException("newListener is required")
-        }
-        mListeners.put(newListener.getOrThrow())
+    public func addListener(newListener: SpringListener): Spring {
+        mListeners.put(newListener)
         return this
     }
 
-    public func removeListener(listenerToRemove: ?SpringListener): Spring {
-        if (listenerToRemove.isNone()) {
-            throw IllegalArgumentException("listenerToRemove is required")
-        }
-        mListeners.remove(listenerToRemove.getOrThrow())
+    public func removeListener(listenerToRemove: SpringListener): Spring {
+        mListeners.remove(listenerToRemove)
         return this
     }
 
