@@ -21,11 +21,8 @@ public class BaseSpringSystem {
 
     private var mIdle: Bool = true
 
-    public init(springLooper: ?SpringLooper) {
-        if (springLooper.isNone()) {
-            throw IllegalArgumentException("springLooper is required")
-        }
-        mSpringLooper = springLooper.getOrThrow()
+    public init(springLooper: SpringLooper) {
+        mSpringLooper = springLooper
         mSpringLooper.setSpringSystem(this)
     }
 
@@ -39,11 +36,8 @@ public class BaseSpringSystem {
         return spring
     }
 
-    public func getSpringById(id: ?String): ?Spring {
-        if (id.isNone()) {
-            throw IllegalArgumentException("id is required")
-        }
-        return mSpringRegistry.get(id ?? "")
+    public func getSpringById(id: String): ?Spring {
+        return mSpringRegistry.get(id)
     }
 
     public func getAllSprings(): ArrayList<Spring> {
@@ -57,22 +51,16 @@ public class BaseSpringSystem {
         return list
     }
 
-    func registerSpring(spring: ?Spring): Unit {
-        if (spring.isNone()) {
-            throw IllegalArgumentException("spring is required")
-        }
-        if (mSpringRegistry.contains(spring.getOrThrow().getId())) {
+    func registerSpring(spring: Spring): Unit {
+        if (mSpringRegistry.contains(spring.getId())) {
             throw IllegalArgumentException("spring is already registered")
         }
-        mSpringRegistry.put(spring.getOrThrow().getId(), spring.getOrThrow())
+        mSpringRegistry.put(spring.getId(), spring)
     }
 
-    func deregisterSpring(spring: ?Spring): Unit {
-        if (spring.isNone()) {
-            throw IllegalArgumentException("spring is required")
-        }
-        mActiveSprings.remove(spring.getOrThrow())
-        mSpringRegistry.remove(spring.getOrThrow().getId())
+    func deregisterSpring(spring: Spring): Unit {
+        mActiveSprings.remove(spring)
+        mSpringRegistry.remove(spring.getId())
     }
 
     func advance(deltaTime: Float64): Unit {
@@ -113,18 +101,12 @@ public class BaseSpringSystem {
         }
     }
 
-    public func addListener(newListener: ?SpringSystemListener): Unit {
-        if (newListener.isNone()) {
-            throw IllegalArgumentException("newListener is required")
-        }
-        mListeners.put(newListener.getOrThrow())
+    public func addListener(newListener: SpringSystemListener): Unit {
+        mListeners.put(newListener)
     }
 
-    public func removeListener(listenerToRemove: ?SpringSystemListener): Unit {
-        if (listenerToRemove.isNone()) {
-            throw IllegalArgumentException("listenerToRemove is required")
-        }
-        mListeners.remove(listenerToRemove.getOrThrow())
+    public func removeListener(listenerToRemove: SpringSystemListener): Unit {
+        mListeners.remove(listenerToRemove)
     }
 
     public func removeAllListeners(): Unit {

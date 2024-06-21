@@ -25,17 +25,18 @@ public class TestBaseSpringSystem {
     public func test01(): Unit {
         let bss: BaseSpringSystem = BaseSpringSystem(SteppingLooper())
         let s: Spring = bss.createSpring()
-        try {
-            bss.getSpringById(None)
-        } catch (e: IllegalArgumentException) {
-            println(e.printStackTrace())
+        let spring = bss.getSpringById("")
+        var flag = false
+        if (spring.isSome()) {
+            flag = true
         }
+        @Assert(flag, false)
     }
 
     @TestCase
     public func test02(): Unit {
         try {
-            var bss2: BaseSpringSystem = BaseSpringSystem(None)
+            var bss2: BaseSpringSystem = BaseSpringSystem(SteppingLooper())
         } catch (e: Exception) {
             println(e.printStackTrace())
         }        
@@ -47,23 +48,19 @@ public class TestBaseSpringSystem {
         let s2: ?Spring = bss.getSpringById("k1")
         let springs: ArrayList<Spring> = bss.getAllSprings()
         bss.loop(16.0)
-        try {
-            bss.addListener(None)
-        } catch (e: IllegalArgumentException) {
-            println(e.printStackTrace())
-        }
+        let lis: SpringSystemListener = MySpringSystemListener()
+        bss.addListener(lis)
+        @Assert(bss.getIsIdle(), true)
     }
 
     @TestCase
     public func test04(): Unit {
         let bss: BaseSpringSystem = BaseSpringSystem(SteppingLooper())   
         let lis: SpringSystemListener = MySpringSystemListener()
+        let lis2: SpringSystemListener = MySpringSystemListener()
         bss.addListener(lis)
-        try {
-            bss.removeListener(None)
-        } catch (e: IllegalArgumentException) {
-            println(e.printStackTrace())
-        }
+        bss.removeListener(lis2)
+        @Assert(bss.getIsIdle(), true)
     }
 
     @TestCase

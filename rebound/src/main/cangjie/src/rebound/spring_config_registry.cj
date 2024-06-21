@@ -20,25 +20,16 @@ public class SpringConfigRegistry {
         }
     }
 
-    public func addSpringConfig(springConfig: ?SpringConfig, configName: ?String): Bool {
-        if (springConfig.isNone()) {
-            throw IllegalArgumentException("springConfig is required")
-        }
-        if (configName.isNone()) {
-            throw IllegalArgumentException("configName is required")
-        }
-        if (mSpringConfigMap.contains(springConfig.getOrThrow())) {
+    public func addSpringConfig(springConfig: SpringConfig, configName: String): Bool {
+        if (mSpringConfigMap.contains(springConfig)) {
             return false
         }
-        mSpringConfigMap.put(springConfig.getOrThrow(), configName.getOrThrow())
+        mSpringConfigMap.put(springConfig, configName)
         return true
     }
 
-    public func removeSpringConfig(springConfig: ?SpringConfig): Bool {
-        if (springConfig.isNone()) {
-            throw IllegalArgumentException("springConfig is required")
-        }
-        return Some<String>(mSpringConfigMap.remove(springConfig.getOrThrow()).toString()).isSome()
+    public func removeSpringConfig(springConfig: SpringConfig): Bool {
+        return Some<String>(mSpringConfigMap.remove(springConfig).toString()).isSome()
     }
 
     public func getAllSpringConfig(): Map<SpringConfig, String> {

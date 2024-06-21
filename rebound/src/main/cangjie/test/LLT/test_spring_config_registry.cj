@@ -24,7 +24,7 @@ public class TestSpringConfigRegistry {
     public func test01(): Unit {
         let scr = SpringConfigRegistry.getInstance()
         try {
-            scr.addSpringConfig(None, None)
+            scr.addSpringConfig(SpringConfig(10.0, 10.1), "k1")
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -34,7 +34,7 @@ public class TestSpringConfigRegistry {
     public func test02(): Unit {
         let scr = SpringConfigRegistry.getInstance()
         try {
-            scr.addSpringConfig(SpringConfig(0.0, 1.1), None)
+            scr.addSpringConfig(SpringConfig(0.0, 1.1), "k2")
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -47,7 +47,7 @@ public class TestSpringConfigRegistry {
         let sc = SpringConfig(0.0, 1.1)
         let flag = scr2.addSpringConfig(sc, "test")
         try {
-            scr.removeSpringConfig(None)
+            scr.removeSpringConfig(sc)
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -57,7 +57,7 @@ public class TestSpringConfigRegistry {
     public func test04(): Unit {
         let scr2 = SpringConfigRegistry.getInstance()
         let map = scr2.getAllSpringConfig()
-        @Assert(map.size, 2)
+        @Assert(map.size, 3)
     }
 
     @TestCase
@@ -66,7 +66,7 @@ public class TestSpringConfigRegistry {
         let sc = SpringConfig(0.0, 1.1)
         let map = scr2.getAllSpringConfig()
         scr2.removeSpringConfig(sc)
-        @Assert(map.size, 2)
+        @Assert(map.size, 3)
     }
 
     @TestCase
