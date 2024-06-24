@@ -10,5 +10,8 @@ from ohos import ability.LaunchReason
 from ohos import ability.LaunchParam
 from ohos import window.WindowStage
 from ohos import prompt_action.*
+from ohos import system_date_time.*
+from rebound import rebound.*
+from ohos import concurrency.*
 
-from cj_res_entry import cj_res_entry.app
+from cj_res_entry import cj_res_entry.*

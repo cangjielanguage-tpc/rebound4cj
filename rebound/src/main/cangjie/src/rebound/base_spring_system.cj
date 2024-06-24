@@ -88,8 +88,8 @@ public class BaseSpringSystem {
         for (listener in mListeners) {
             listener.onAfterIntegrate(this)
         }
-        if (mIdle) {
-            mSpringLooper.stop()
+        if (!mIdle) {
+            mSpringLooper.start()
         }
     }
 
