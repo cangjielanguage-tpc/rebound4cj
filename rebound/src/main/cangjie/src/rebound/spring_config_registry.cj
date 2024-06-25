@@ -29,7 +29,10 @@ public class SpringConfigRegistry {
     }
 
     public func removeSpringConfig(springConfig: SpringConfig): Bool {
-        return Some<String>(mSpringConfigMap.remove(springConfig).toString()).isSome()
+        if (mSpringConfigMap.remove(springConfig).isSome()) {
+            return true
+        }
+        return false
     }
 
     public func getAllSpringConfig(): Map<SpringConfig, String> {

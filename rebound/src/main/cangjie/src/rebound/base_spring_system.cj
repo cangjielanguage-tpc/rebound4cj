@@ -7,13 +7,13 @@ package rebound
 from std import collection.ArrayList
 from std import collection.HashMap
 from std import collection.Map
-from std import collection.HashSet
 from std import collection.Set
+from std import collection.concurrent.ConcurrentHashMap
 
 public class BaseSpringSystem {
     private let mSpringRegistry: Map<String, Spring> = HashMap<String, Spring>()
 
-    private let mActiveSprings: Set<Spring> = HashSet<Spring>()
+    private let mActiveSprings: ConcurrentHashMap<Spring, Any> = ConcurrentHashMap<Spring, Any>()
 
     private let mSpringLooper: SpringLooper
 
@@ -64,12 +64,16 @@ public class BaseSpringSystem {
     }
 
     func advance(deltaTime: Float64): Unit {
-        for (spring in mActiveSprings) {
+        var optArr: ArrayList<Spring> = ArrayList<Spring>()
+        for ((spring, _) in mActiveSprings) {
             if (spring.systemShouldAdvance()) {
                 spring.advance(deltaTime / 1000.0)
             } else {
-                mActiveSprings.remove(spring)
+                optArr.append(spring)
             }
+        }
+        for (i in 0..optArr.size) {
+            mActiveSprings.remove(optArr[i])
         }
     }
 
@@ -94,7 +98,7 @@ public class BaseSpringSystem {
         if (spring.isNone()) {
             throw IllegalArgumentException("springId " + springId + " does not reference a registered spring")
         }
-        mActiveSprings.put(spring.getOrThrow())
+        mActiveSprings.put(spring.getOrThrow(), 0)
         if (getIsIdle()) {
             mIdle = false
             mSpringLooper.start()
