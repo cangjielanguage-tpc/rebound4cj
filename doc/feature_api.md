@@ -22,10 +22,10 @@ public class BaseSpringSystem {
     /**
     * BaseSpringSystem 的有参构造方法
     *
-    * @param springLooper - 传入 SpringLooper 物理循环对象，为 Option 类型
+    * @param springLooper - 传入 SpringLooper 物理循环对象
     *
     */
-    public init(springLooper: ?SpringLooper)
+    public init(springLooper: SpringLooper)
 
     /**
     * 创建弹簧
@@ -45,11 +45,11 @@ public class Spring {
     /**
     * 设置配置类
     *
-    * @param springConfig 弹簧配置类，为 Option 类型
+    * @param springConfig 弹簧配置类
     *
     * @return 返回弹簧实例
     */
-    public func setSpringConfig(springConfig: ?SpringConfig): Spring
+    public func setSpringConfig(springConfig: SpringConfig): Spring
 
     /**
     * 获取配置类
@@ -61,11 +61,11 @@ public class Spring {
     /**
     * 向 Spring 弹簧实例添加监听器
     *
-    * @param newListener 监听器对象，为 Option 类型
+    * @param newListener 监听器对象
     *
     * @return 返回 Spring 弹簧实例
     */
-    public func addListener(newListener: ?SpringListener): Spring
+    public func addListener(newListener: SpringListener): Spring
 
     /**
     * 设置 endValue 值以确定弹簧的位移
@@ -96,12 +96,12 @@ public class BaseSpringSystem {
     /**
     * 根据 id 获取弹簧
     *
-    * @param id - 传入弹簧 id，为 Option 类型
+    * @param id - 传入弹簧 id
     *
-    * @return 返回带指定 id 的弹簧
+    * @return 返回带指定 id 的弹簧，返回值是 Option 类型
     *
     */
-    public func getSpringById(id: ?String): ?Spring
+    public func getSpringById(id: String): ?Spring
 
     /**
     * 返回所有弹簧
@@ -122,18 +122,18 @@ public class BaseSpringSystem {
     /**
     * 为弹簧系统添加监听器
     *
-    * @param newListener - 弹簧系统监听器接口，为 Option 类型
+    * @param newListener - 弹簧系统监听器接口
     *
     */
-    public func addListener(newListener: ?SpringSystemListener): Unit
+    public func addListener(newListener: SpringSystemListener): Unit
 
     /**
     * 删除监听器
     *
-    * @param listenerToRemove - 弹簧系统监听器接口，为 Option 类型
+    * @param listenerToRemove - 弹簧系统监听器接口
     *
     */
-    public func removeListener(listenerToRemove: ?SpringSystemListener): Unit
+    public func removeListener(listenerToRemove: SpringSystemListener): Unit
 
     /**
     * 清除所有的监听器
@@ -246,7 +246,7 @@ public class OrigamiValueConverter {
 SimpleSpringListener 抽象监听器基类
 
 ```cangjie
-public abstract class SimpleSpringListener {
+public abstract class SimpleSpringListener <: SpringListener {
 
     /**
     * SimpleSpringListener 的无参构造方法
@@ -303,12 +303,12 @@ public class SpringConfigRegistry {
     /**
     * 向注册表添加一个 SpringConfig
     *
-    * @param springConfig - 将 springConfig 添加到注册表中，为 Option 类型
-    * @param configName - name 在注册表中给出 springConfig，为 Option 类型
+    * @param springConfig - 将 springConfig 添加到注册表中
+    * @param configName - name 在注册表中给出 springConfig
     *
     * @return 如果添加了 SpringConfig，则为 true，如果已经存在该名称的配置，则为 false
     */
-    public func addSpringConfig(springConfig: ?SpringConfig, configName: ?String): Bool
+    public func addSpringConfig(springConfig: SpringConfig, configName: String): Bool
 
     /**
     * 从注册表中删除一个特定的SpringConfig
@@ -317,7 +317,7 @@ public class SpringConfigRegistry {
     *
     * @return 如果 SpringConfig 被删除，则为 true，如果它不存在，则为 false
     */
-    public func removeSpringConfig(springConfig: ?SpringConfig): Bool
+    public func removeSpringConfig(springConfig: SpringConfig): Bool
 
     /**
     * 获取注册表中所有的 SpringConfig
@@ -527,7 +527,7 @@ SteppingLooper 步进循环器
 
 ```cangjie
 
-public class SteppingLooper {
+public class SteppingLooper <: SpringLooper {
 
     /**
     * SteppingLooper 的无参构造方法
@@ -559,7 +559,7 @@ public class SteppingLooper {
 SynchronousLooper 同步循环器
 
 ```cangjie
-public class SynchronousLooper {
+public class SynchronousLooper <: SpringLooper {
 
     /**
     * SynchronousLooper 的无参构造方法
@@ -759,11 +759,11 @@ public class Spring {
     /**
     * 从 Spring 弹簧实例中删除监听器
     *
-    * @param listenerToRemove 监听器对象，为 Option 类型
+    * @param listenerToRemove 监听器对象
     *
     * @return 返回 Spring 弹簧实例
     */
-    public func removeListener(listenerToRemove: ?SpringListener): Spring
+    public func removeListener(listenerToRemove: SpringListener): Spring
 
     /**
     * 删除弹簧中的所有监听器

@@ -17,7 +17,7 @@ public class BaseSpringSystem {
 
     private let mSpringLooper: SpringLooper
 
-    private let mListeners: Set<SpringSystemListener> = HashSet<SpringSystemListener>()
+    private let mListeners: Map<SpringSystemListener, Any> = HashMap<SpringSystemListener, Any>()
 
     private var mIdle: Bool = true
 
@@ -78,18 +78,18 @@ public class BaseSpringSystem {
     }
 
     public func loop(ellapsedMillis: Float64): Unit {
-        for (listener in mListeners) {
+        for ((listener, _) in mListeners) {
             listener.onBeforeIntegrate(this)
         }
         advance(ellapsedMillis)
         if (mActiveSprings.isEmpty()) {
             mIdle = true
         }
-        for (listener in mListeners) {
+        for ((listener, _) in mListeners) {
             listener.onAfterIntegrate(this)
         }
-        if (mIdle) {
-            mSpringLooper.stop()
+        if (!mIdle) {
+            mSpringLooper.start()
         }
     }
 
@@ -106,7 +106,7 @@ public class BaseSpringSystem {
     }
 
     public func addListener(newListener: SpringSystemListener): Unit {
-        mListeners.put(newListener)
+        mListeners.put(newListener, 0)
     }
 
     public func removeListener(listenerToRemove: SpringSystemListener): Unit {
