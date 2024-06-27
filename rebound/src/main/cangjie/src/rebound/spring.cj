@@ -42,6 +42,12 @@ public class Spring <: Hashable & Equatable<Spring> {
 
     private let mSpringSystem: BaseSpringSystem
 
+    public prop mCurrentValue: Float64 {
+        get() {
+            getCurrentValue()
+        }
+    }
+
     init(springSystem: ?BaseSpringSystem) {
         if (springSystem.isNone()) {
             throw IllegalArgumentException("Spring cannot be created outside of a BaseSpringSystem")
@@ -103,8 +109,10 @@ public class Spring <: Hashable & Equatable<Spring> {
     }
 
     public func setEndValue(endValue: Float64): Spring {
-        if (mEndValue == endValue && isAtRest()) {
-            return this
+        if (mEndValue == endValue) {
+            if (isAtRest()) {
+                return this    
+            }
         }
         mStartValue = getCurrentValue()
         mEndValue = endValue
@@ -160,7 +168,7 @@ public class Spring <: Hashable & Equatable<Spring> {
     }
 
     public func isOvershooting(): Bool {
-        return mSpringConfig.tension > 0.0 && ((mStartValue < mEndValue && getCurrentValue() > mEndValue) || (mStartValue > mEndValue && getCurrentValue() < mEndValue))
+        return mSpringConfig.tension > 0.0 && ((mStartValue < mEndValue && mCurrentValue > mEndValue) || (mStartValue > mEndValue && mCurrentValue < mEndValue))
     }
 
     func advance(realDeltaTime: Float64): Unit {
@@ -262,7 +270,13 @@ public class Spring <: Hashable & Equatable<Spring> {
     }
 
     public func isAtRest(): Bool {
-        return abs(mCurrentState.velocity) <= mRestSpeedThreshold && (getDisplacementDistanceForState(mCurrentState) <= mDisplacementFromRestThreshold || mSpringConfig.tension == 0.0)
+        let velocityAtRest: Bool = abs(mCurrentState.velocity) <= mRestSpeedThreshold
+        let displacementDistance: Float64 = getDisplacementDistanceForState(mCurrentState)
+        let displacementAtRest: Bool = displacementDistance <= mDisplacementFromRestThreshold
+        let tensionIsZero: Bool = mSpringConfig.tension == 0.0
+        let restCondition: Bool = displacementAtRest || tensionIsZero
+        let isAtRest: Bool = restCondition && velocityAtRest
+        return isAtRest
     }
 
     public func setAtRest(): Spring {
@@ -293,7 +307,7 @@ public class Spring <: Hashable & Equatable<Spring> {
     }
 
     public func currentValueIsApproximately(value: Float64): Bool {
-        return abs(getCurrentValue() - value) <= getRestDisplacementThreshold()
+        return abs(mCurrentValue - value) <= getRestDisplacementThreshold()
     }
 
     public operator func ==(other: Spring): Bool {
