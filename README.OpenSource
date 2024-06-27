@@ -3,7 +3,7 @@
         "Name": "rebound4ohos",
         "License": "BSD License",
         "License File": " LICENSE ",
-        "Version Number": "v0.0.7",
+        "Version Number": "v0.3.8",
         "Owner": "pllab",
         "Upstream URL": "https://github.com/facebookarchive/rebound",
         "Description": "Rebound is a simple library that models Spring dynamics for the purpose of driving physical animations"
