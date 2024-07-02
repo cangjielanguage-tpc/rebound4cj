@@ -17,7 +17,7 @@ public class BaseSpringSystem {
 
     private let mSpringLooper: SpringLooper
 
-    private let mListeners: Map<SpringSystemListener, Any> = HashMap<SpringSystemListener, Any>()
+    private let mListeners: ConcurrentHashMap<SpringSystemListener, Any> = ConcurrentHashMap<SpringSystemListener, Any>()
 
     private var mIdle: Bool = true
 
@@ -114,6 +114,12 @@ public class BaseSpringSystem {
     }
 
     public func removeAllListeners(): Unit {
-        mListeners.clear()
+        let optList: ArrayList<SpringSystemListener> = ArrayList<SpringSystemListener>()
+        for ((k, _) in mListeners) {
+            optList.append(k)
+        }
+        for (i in 0..optList.size) {
+            mListeners.remove(optList[i])
+        }
     }
 }

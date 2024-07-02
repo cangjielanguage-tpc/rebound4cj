@@ -36,7 +36,7 @@ public class Spring <: Hashable & Equatable<Spring> {
 
     private var mDisplacementFromRestThreshold = 0.005
 
-    private var mListeners: HashSet<SpringListener> = HashSet<SpringListener>()
+    private var mListeners: ConcurrentHashMap<SpringListener, Any> = ConcurrentHashMap<SpringListener, Any>()
 
     private var mTimeAccumulator = 0.0
 
@@ -57,8 +57,18 @@ public class Spring <: Hashable & Equatable<Spring> {
         setSpringConfig(SpringConfig.defaultConfig)
     }
 
+    func clearAllListeners(): Unit {
+        let optList: ArrayList<SpringListener> = ArrayList<SpringListener>()
+        for ((k, _) in mListeners) {
+            optList.append(k)
+        }
+        for (i in 0..optList.size) {
+            mListeners.remove(optList[i])
+        }
+    }
+
     public func destroy(): Unit {
-        mListeners.clear()
+        clearAllListeners()
         mSpringSystem.deregisterSpring(this)
     }
 
@@ -83,7 +93,7 @@ public class Spring <: Hashable & Equatable<Spring> {
         mStartValue = currentValue
         mCurrentState.position = currentValue
         mSpringSystem.activateSpring(this.getId())
-        for (listener in mListeners) {
+        for ((listener, _) in mListeners) {
             listener.onSpringUpdate(this)
         }
         if (atRest) {
@@ -117,7 +127,7 @@ public class Spring <: Hashable & Equatable<Spring> {
         mStartValue = getCurrentValue()
         mEndValue = endValue
         mSpringSystem.activateSpring(this.getId())
-        for (listener in mListeners) {
+        for ((listener, _) in mListeners) {
             listener.onSpringEndStateChange(this)
         }
         return this
@@ -250,7 +260,7 @@ public class Spring <: Hashable & Equatable<Spring> {
             mWasAtRest = true
             notifyAtRest = true
         }
-        for (listener in mListeners) {
+        for ((listener, _) in mListeners) {
             if (notifyActivate) {
                 listener.onSpringActivate(this)
             }
@@ -292,7 +302,7 @@ public class Spring <: Hashable & Equatable<Spring> {
     }
 
     public func addListener(newListener: SpringListener): Spring {
-        mListeners.put(newListener)
+        mListeners.put(newListener, 0)
         return this
     }
 
@@ -302,7 +312,7 @@ public class Spring <: Hashable & Equatable<Spring> {
     }
 
     public func removeAllListeners(): Spring {
-        mListeners.clear()
+        clearAllListeners()
         return this
     }
 
