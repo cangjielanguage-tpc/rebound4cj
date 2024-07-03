@@ -4,7 +4,6 @@
 
 package rebound
 
-from j2cjlib import mappings.lang.AssertionError
 from std import math.pow
 
 public class BouncyConversion {
@@ -80,7 +79,7 @@ public class BouncyConversion {
             friction = b3_friction3(tension)
         } else {
             if (!(false)) {
-                throw AssertionError()
+                throw Exception("false")
             }
         }
         return friction
