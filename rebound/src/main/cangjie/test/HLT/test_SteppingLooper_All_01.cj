@@ -1,6 +1,4 @@
-// 3rd_party_lib:rebound4ohos/rebound/src/main/cangjie/build/rebound:rebound4ohos/rebound/src/main/cangjie/build/j2cjlib
-// 3rd_party_lib_ohos:cangjie/build/aarch64-linux-ohos/flexSearch4cj
-
+// 3rd_party_lib:rebound4ohos/rebound/src/main/cangjie/build/rebound
 
 from std import math.*
 from rebound import rebound.*
