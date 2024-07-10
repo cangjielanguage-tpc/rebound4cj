@@ -1,3 +1,7 @@
+/*
+ * @Copyright (c) Huawei Technologies Co., Ltd. 2024-2024. All rights reserved.
+ */
+
 package rebound
 
 public interface SpringSystemListener <: Hashable & Equatable<SpringSystemListener> {
