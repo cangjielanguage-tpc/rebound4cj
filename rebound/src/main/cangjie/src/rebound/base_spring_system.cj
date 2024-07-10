@@ -11,13 +11,13 @@ from std import collection.Set
 from std import collection.concurrent.ConcurrentHashMap
 
 public class BaseSpringSystem {
-    private let mSpringRegistry: Map<String, Spring> = HashMap<String, Spring>()
+    private let mSpringRegistry: HashMap<String, Spring> = HashMap<String, Spring>()
 
-    private let mActiveSprings: ConcurrentHashMap<Spring, Any> = ConcurrentHashMap<Spring, Any>()
+    private let mActiveSprings: ConcurrentArrayList<Spring> = ConcurrentArrayList<Spring>()
 
     private let mSpringLooper: SpringLooper
 
-    private let mListeners: ConcurrentHashMap<SpringSystemListener, Any> = ConcurrentHashMap<SpringSystemListener, Any>()
+    private let mListeners: ConcurrentArrayList<SpringSystemListener> = ConcurrentArrayList<SpringSystemListener>()
 
     private var mIdle: Bool = true
 
@@ -52,10 +52,7 @@ public class BaseSpringSystem {
     }
 
     func registerSpring(spring: Spring): Unit {
-        if (mSpringRegistry.contains(spring.getId())) {
-            throw IllegalArgumentException("spring is already registered")
-        }
-        mSpringRegistry.put(spring.getId(), spring)
+        mSpringRegistry.putIfAbsent(spring.getId(), spring)
     }
 
     func deregisterSpring(spring: Spring): Unit {
@@ -65,7 +62,7 @@ public class BaseSpringSystem {
 
     func advance(deltaTime: Float64): Unit {
         var optArr: ArrayList<Spring> = ArrayList<Spring>()
-        for ((spring, _) in mActiveSprings) {
+        for (spring in mActiveSprings.iterator()) {
             if (spring.systemShouldAdvance()) {
                 spring.advance(deltaTime / 1000.0)
             } else {
@@ -78,14 +75,14 @@ public class BaseSpringSystem {
     }
 
     public func loop(ellapsedMillis: Float64): Unit {
-        for ((listener, _) in mListeners) {
+        for (listener in mListeners.iterator()) {
             listener.onBeforeIntegrate(this)
         }
         advance(ellapsedMillis)
         if (mActiveSprings.isEmpty()) {
             mIdle = true
         }
-        for ((listener, _) in mListeners) {
+        for (listener in mListeners.iterator()) {
             listener.onAfterIntegrate(this)
         }
         if (!mIdle) {
@@ -98,7 +95,7 @@ public class BaseSpringSystem {
         if (spring.isNone()) {
             throw IllegalArgumentException("springId " + springId + " does not reference a registered spring")
         }
-        mActiveSprings.put(spring.getOrThrow(), 0)
+        mActiveSprings.put(spring.getOrThrow())
         if (getIsIdle()) {
             mIdle = false
             mSpringLooper.start()
@@ -106,7 +103,7 @@ public class BaseSpringSystem {
     }
 
     public func addListener(newListener: SpringSystemListener): Unit {
-        mListeners.put(newListener, 0)
+        mListeners.put(newListener)
     }
 
     public func removeListener(listenerToRemove: SpringSystemListener): Unit {
@@ -115,7 +112,7 @@ public class BaseSpringSystem {
 
     public func removeAllListeners(): Unit {
         let optList: ArrayList<SpringSystemListener> = ArrayList<SpringSystemListener>()
-        for ((k, _) in mListeners) {
+        for (k in mListeners.iterator()) {
             optList.append(k)
         }
         for (i in 0..optList.size) {

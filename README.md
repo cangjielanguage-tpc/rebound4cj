@@ -1,5 +1,5 @@
 <div align="center">
-<h1>rebound4ohos</h1>
+<h1>rebound4cj</h1>
 </div>
 
 <p align="center">
@@ -14,7 +14,7 @@
 
 本项目基于开源库 https://github.com/facebookarchive/rebound
 
-rebound4ohos 是一个模拟弹簧动力学，用于驱动物理动画的库。
+rebound4cj 是一个模拟弹簧动力学，用于驱动物理动画的库。
 
 ### 特性
 
@@ -46,13 +46,12 @@ rebound4ohos 是一个模拟弹簧动力学，用于驱动物理动画的库。
 - `entry` 工程模块 - 编译生成一个HAP
 - `entry src` APP代码目录
 - `entry src main` APP项目目录
-- `entry src main cangjie` 仓颉代码目录
+- `entry src main cangjie` 仓颉UI示例目录
 - `entry src main resources` 资源文件目录
 - `rebound` 工程模块 - 编译生成一个har包
 - `rebound src` 模块代码目录
 - `rebound src main` 模块项目目录
 - `rebound src main cangjie` 仓颉代码目录
-- `rebound src main cangjie src rebound` markdown UI页面目录
 - `hvigor` 构建工具目录
 
 ### 接口说明
@@ -65,7 +64,7 @@ rebound4ohos 是一个模拟弹簧动力学，用于驱动物理动画的库。
 
 ### 功能示例
 
-**entry -> src -> main -> cangjie -> src 目录下 ar_ 开头cj文件的都是使用用例，运行可以直接展示页面效果。**
+**entry -> src -> main -> cangjie -> src 目录下 index.cj，运行可以展示示例效果。**
 
 ## 约束与限制
 
