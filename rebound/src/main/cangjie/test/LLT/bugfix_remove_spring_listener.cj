@@ -59,10 +59,16 @@ public class SubSpringListener <:SpringListener{
         return flag
     }
     public operator func !=(that: SpringListener): Bool {
-        return !(this == that)
+        if (this.hashCode() != that.hashCode()) {
+            return true
+        }
+        return false
     }
     public operator func ==(that: SpringListener): Bool {
-        return true
+        if (this.hashCode() == that.hashCode()) {
+            return true
+        }
+        return false
     }
 
     @OverflowWrapping
@@ -82,10 +88,16 @@ public class SubSpringSystemListener <: SpringSystemListener{
         springSystem.createSpring()
     }
     public operator func !=(that: SpringSystemListener): Bool {
-        return !(this == that)
+        if (this.hashCode() != that.hashCode()) {
+            return true
+        }
+        return false
     }
     public operator func ==(that: SpringSystemListener): Bool {
-        return true
+        if (this.hashCode() == that.hashCode()) {
+            return true
+        }
+        return false
     }
 
     @OverflowWrapping

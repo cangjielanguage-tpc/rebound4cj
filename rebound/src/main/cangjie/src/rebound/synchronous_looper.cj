@@ -27,7 +27,7 @@ public class SynchronousLooper <: SpringLooper {
     public override func start(): Unit {
         mRunning = true
         if (mSpringSystem.isSome()) {
-            while (!mSpringSystem.getOrThrow().getIsIdle()) {
+            while (!mSpringSystem.getOrThrow().mIdle) {
                 if (mRunning == false) {
                     break
                 }
