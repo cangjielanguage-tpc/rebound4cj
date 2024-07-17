@@ -18,7 +18,7 @@ public class Spring <: Hashable & Equatable<Spring> {
 
     private var mOvershootClampingEnabled: Bool = false
 
-    private let mId: String
+    let mId: String
 
     private let mCurrentState = Spring_PhysicsState()
 
@@ -48,11 +48,8 @@ public class Spring <: Hashable & Equatable<Spring> {
         }
     }
 
-    init(springSystem: ?BaseSpringSystem) {
-        if (springSystem.isNone()) {
-            throw IllegalArgumentException("Spring cannot be created outside of a BaseSpringSystem")
-        }
-        mSpringSystem = springSystem.getOrThrow()
+    init(springSystem: BaseSpringSystem) {
+        mSpringSystem = springSystem
         mId = "spring:" + (match (0) { case _ => ID++; ID - 1 }).toString()
         setSpringConfig(SpringConfig.defaultConfig)
     }
@@ -92,7 +89,7 @@ public class Spring <: Hashable & Equatable<Spring> {
     public func setCurrentValue(currentValue: Float64, atRest: Bool): Spring {
         mStartValue = currentValue
         mCurrentState.position = currentValue
-        mSpringSystem.activateSpring(this.getId())
+        mSpringSystem.activateSpring(this.mId)
         for (listener in mListeners.iterator()) {
             listener.onSpringUpdate(this)
         }
@@ -124,9 +121,9 @@ public class Spring <: Hashable & Equatable<Spring> {
                 return this
             }
         }
-        mStartValue = getCurrentValue()
+        mStartValue = mCurrentState.position
         mEndValue = endValue
-        mSpringSystem.activateSpring(this.getId())
+        mSpringSystem.activateSpring(this.mId)
         for (listener in mListeners.iterator()) {
             listener.onSpringEndStateChange(this)
         }
@@ -142,7 +139,7 @@ public class Spring <: Hashable & Equatable<Spring> {
             return this
         }
         mCurrentState.velocity = velocity
-        mSpringSystem.activateSpring(this.getId())
+        mSpringSystem.activateSpring(this.mId)
         return this
     }
 

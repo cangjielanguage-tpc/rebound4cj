@@ -25,7 +25,7 @@ public class SteppingLooper <: SpringLooper {
         let currentTime: Int64 = mLastTime + interval
         mSpringSystem.getOrThrow().loop(Float64(currentTime))
         mLastTime = currentTime
-        return mSpringSystem.getOrThrow().getIsIdle()
+        return mSpringSystem.getOrThrow().mIdle
     }
 
     override public func stop(): Unit {

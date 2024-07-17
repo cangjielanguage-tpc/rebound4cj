@@ -11,7 +11,7 @@ from std import collection.Set
 from std import collection.concurrent.ConcurrentHashMap
 
 public class BaseSpringSystem {
-    private let mSpringRegistry: HashMap<String, Spring> = HashMap<String, Spring>()
+    private let mSpringRegistry: newMap = newMap()
 
     private let mActiveSprings: ConcurrentArrayList<Spring> = ConcurrentArrayList<Spring>()
 
@@ -19,7 +19,7 @@ public class BaseSpringSystem {
 
     private let mListeners: ConcurrentArrayList<SpringSystemListener> = ConcurrentArrayList<SpringSystemListener>()
 
-    private var mIdle: Bool = true
+    var mIdle: Bool = true
 
     public init(springLooper: SpringLooper) {
         mSpringLooper = springLooper
@@ -52,12 +52,12 @@ public class BaseSpringSystem {
     }
 
     func registerSpring(spring: Spring): Unit {
-        mSpringRegistry.putIfAbsent(spring.getId(), spring)
+        mSpringRegistry.putIfAbsent(spring.mId, spring)
     }
 
     func deregisterSpring(spring: Spring): Unit {
         mActiveSprings.remove(spring)
-        mSpringRegistry.remove(spring.getId())
+        mSpringRegistry.remove(spring.mId)
     }
 
     func advance(deltaTime: Float64): Unit {
@@ -96,7 +96,7 @@ public class BaseSpringSystem {
             throw IllegalArgumentException("springId " + springId + " does not reference a registered spring")
         }
         mActiveSprings.put(spring.getOrThrow())
-        if (getIsIdle()) {
+        if (mIdle) {
             mIdle = false
             mSpringLooper.start()
         }
