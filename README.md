@@ -70,7 +70,7 @@ rebound4cj 是一个模拟弹簧动力学，用于驱动物理动画的库。
 
 ## 开源协议
 
-[LICENSE](/LICENSE)
+本项目基于 [BSD License](./LICENSE) ，请自由的享受和参与开源。
 
 ## 参与贡献
 
