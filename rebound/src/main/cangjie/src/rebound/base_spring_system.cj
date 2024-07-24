@@ -2,13 +2,13 @@
  * @Copyright (c) Huawei Technologies Co., Ltd. 2024-2024. All rights reserved.
  */
 
-package rebound
+package rebound.rebound
 
-from std import collection.ArrayList
-from std import collection.HashMap
-from std import collection.Map
-from std import collection.Set
-from std import collection.concurrent.ConcurrentHashMap
+internal import std.collection.ArrayList
+internal import std.collection.HashMap
+internal import std.collection.Map
+internal import std.collection.Set
+internal import std.collection.concurrent.ConcurrentHashMap
 
 public class BaseSpringSystem {
     private let mSpringRegistry: newMap = newMap()
@@ -62,7 +62,7 @@ public class BaseSpringSystem {
 
     func advance(deltaTime: Float64): Unit {
         var optArr: ArrayList<Spring> = ArrayList<Spring>()
-        for (spring in mActiveSprings.iterator()) {
+        for (spring in mActiveSprings.iterators()) {
             if (spring.systemShouldAdvance()) {
                 spring.advance(deltaTime / 1000.0)
             } else {
@@ -75,14 +75,14 @@ public class BaseSpringSystem {
     }
 
     public func loop(ellapsedMillis: Float64): Unit {
-        for (listener in mListeners.iterator()) {
+        for (listener in mListeners.iterators()) {
             listener.onBeforeIntegrate(this)
         }
         advance(ellapsedMillis)
         if (mActiveSprings.isEmpty()) {
             mIdle = true
         }
-        for (listener in mListeners.iterator()) {
+        for (listener in mListeners.iterators()) {
             listener.onAfterIntegrate(this)
         }
         if (!mIdle) {
@@ -112,7 +112,7 @@ public class BaseSpringSystem {
 
     public func removeAllListeners(): Unit {
         let optList: ArrayList<SpringSystemListener> = ArrayList<SpringSystemListener>()
-        for (k in mListeners.iterator()) {
+        for (k in mListeners.iterators()) {
             optList.append(k)
         }
         for (i in 0..optList.size) {

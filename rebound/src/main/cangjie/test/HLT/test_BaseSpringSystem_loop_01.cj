@@ -1,7 +1,7 @@
 // 3rd_party_lib:rebound4ohos/rebound/src/main/cangjie/build/rebound
 
-from rebound import rebound.*
-from std import random.*
+import rebound.rebound.*
+import std.random.*
 
 @Test
 public class TestBaseSpringSystemLoop{

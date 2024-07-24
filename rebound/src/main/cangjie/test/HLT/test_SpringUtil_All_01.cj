@@ -1,7 +1,7 @@
 // 3rd_party_lib:rebound4ohos/rebound/src/main/cangjie/build/rebound
 
-from std import math.*
-from rebound import rebound.*
+import std.math.*
+import rebound.rebound.*
 @Test
 public class TestSpringUtil{
     /**

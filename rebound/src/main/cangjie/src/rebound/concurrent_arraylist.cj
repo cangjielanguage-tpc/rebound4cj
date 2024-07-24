@@ -2,9 +2,9 @@
  * @Copyright (c) Huawei Technologies Co., Ltd. 2024-2024. All rights reserved.
  */
 
-package rebound
+package rebound.rebound
 
-from std import sync.ReentrantMutex
+internal import std.sync.ReentrantMutex
 
 public class ConcurrentArrayList<T> where T <: Hashable & Equatable<T> {
 
@@ -61,7 +61,7 @@ public class ConcurrentArrayList<T> where T <: Hashable & Equatable<T> {
         return arr.isEmpty()
     }
 
-    func iterator(): Iterator<T> {
+    func iterators(): Iterator<T> {
         return ConcurrentArrayListIterator<T>(arr, size)
     }
 
@@ -92,7 +92,7 @@ class ConcurrentArrayListIterator<T> <: Iterator<T> {
         return None
     }
 
-    public func iterator(): Iterator<T> {
+    public func iterators(): Iterator<T> {
         return this
     }
 }

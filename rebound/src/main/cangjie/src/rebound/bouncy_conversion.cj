@@ -2,9 +2,9 @@
  * @Copyright (c) Huawei Technologies Co., Ltd. 2024-2024. All rights reserved.
  */
 
-package rebound
+package rebound.rebound
 
-from std import math.pow
+internal import std.math.pow
 
 public class BouncyConversion {
     private var mBouncyTension: Float64 = 0.0

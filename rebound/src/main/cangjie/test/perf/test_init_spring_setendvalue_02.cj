@@ -1,12 +1,12 @@
 // EXEC: cjc %import-path %L %l %f
 // EXEC: ./main
 
-from std import unittest.*
-from std import unittest.testmacro.*
-from std import collection.*
-from std import time.*
-from std import random.*
-from rebound import rebound.*
+import std.unittest.*
+import std.unittest.testmacro.*
+import std.collection.*
+import std.time.*
+import std.random.*
+import rebound.rebound.*
 
 main(): Int64 {
     var test = TestInitSpring()

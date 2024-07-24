@@ -2,10 +2,10 @@
  * @Copyright (c) Huawei Technologies Co., Ltd. 2024-2024. All rights reserved.
  */
 
-package rebound
+package rebound.rebound
 
-from std import math.max
-from std import math.min
+internal import std.math.max
+internal import std.math.min
 
 public class SpringUtil {
 

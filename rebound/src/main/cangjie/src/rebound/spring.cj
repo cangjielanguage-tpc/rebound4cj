@@ -2,10 +2,10 @@
  * @Copyright (c) Huawei Technologies Co., Ltd. 2024-2024. All rights reserved.
  */
 
-package rebound
+package rebound.rebound
 
-from std import math.abs
-from std import collection.HashSet
+internal import std.math.abs
+internal import std.collection.HashSet
 
 public class Spring <: Hashable & Equatable<Spring> {
     private static var ID: Int64 = 0
@@ -56,7 +56,7 @@ public class Spring <: Hashable & Equatable<Spring> {
 
     func clearAllListeners(): Unit {
         let optList: ArrayList<SpringListener> = ArrayList<SpringListener>()
-        for (k in mListeners.iterator()) {
+        for (k in mListeners.iterators()) {
             optList.append(k)
         }
         for (i in 0..optList.size) {
@@ -90,7 +90,7 @@ public class Spring <: Hashable & Equatable<Spring> {
         mStartValue = currentValue
         mCurrentState.position = currentValue
         mSpringSystem.activateSpring(this.mId)
-        for (listener in mListeners.iterator()) {
+        for (listener in mListeners.iterators()) {
             listener.onSpringUpdate(this)
         }
         if (atRest) {
@@ -124,7 +124,7 @@ public class Spring <: Hashable & Equatable<Spring> {
         mStartValue = mCurrentState.position
         mEndValue = endValue
         mSpringSystem.activateSpring(this.mId)
-        for (listener in mListeners.iterator()) {
+        for (listener in mListeners.iterators()) {
             listener.onSpringEndStateChange(this)
         }
         return this
@@ -257,7 +257,7 @@ public class Spring <: Hashable & Equatable<Spring> {
             mWasAtRest = true
             notifyAtRest = true
         }
-        for (listener in mListeners.iterator()) {
+        for (listener in mListeners.iterators()) {
             if (notifyActivate) {
                 listener.onSpringActivate(this)
             }

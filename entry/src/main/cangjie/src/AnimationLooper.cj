@@ -2,8 +2,12 @@
  * @Copyright (c) Huawei Technologies Co., Ltd. 2024-2024. All rights reserved.
  */
 
-from std import time.*
-from std import sync.*
+package ohos_app_cangjie_entry
+
+import std.time.*
+import std.sync.*
+import rebound.rebound.*
+
 public class AnimationLooper <: SpringLooper {
 
     public init() {}

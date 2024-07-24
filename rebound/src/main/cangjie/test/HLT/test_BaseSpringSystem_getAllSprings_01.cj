@@ -1,7 +1,7 @@
 // 3rd_party_lib:rebound4ohos/rebound/src/main/cangjie/build/rebound
 
-from rebound import rebound.*
-from std import collection.*
+import rebound.rebound.*
+import std.collection.*
 @Test
 public class TestBaseSpringSystemGetAllSprings{
     /******public func getAllSprings(): ArrayList<Spring>*****/
