@@ -1,6 +1,6 @@
 // 3rd_party_lib:rebound4ohos/rebound/src/main/cangjie/build/rebound
 
-from rebound import rebound.*
+import rebound.rebound.*
 @Test
 public class TestSpringCurrentValue{
     /**

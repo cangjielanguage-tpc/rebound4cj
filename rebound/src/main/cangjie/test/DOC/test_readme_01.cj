@@ -1,10 +1,10 @@
 // EXEC: cjc %import-path %L %l %f
 // EXEC: ./main
 
-from std import unittest.*
-from std import unittest.testmacro.*
-from std import collection.*
-from rebound import rebound.*
+import std.unittest.*
+import std.unittest.testmacro.*
+import std.collection.*
+import rebound.rebound.*
 
 main(): Int64 {
     var test = TestReadme01()

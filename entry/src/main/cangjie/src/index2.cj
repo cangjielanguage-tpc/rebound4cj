@@ -2,6 +2,19 @@
  * @Copyright (c) Huawei Technologies Co., Ltd. 2024-2024. All rights reserved.
  */
 
+package ohos_app_cangjie_entry
+
+import ohos.base.*
+import ohos.component.*
+import ohos.state_manage.*
+import ohos.state_macro_manage.*
+import ohos.concurrency.*
+import ohos.state_macro_manage.Entry
+import ohos.state_macro_manage.Component
+import ohos.state_macro_manage.State
+import ohos.state_macro_manage.r
+import rebound.rebound.*
+
 @Entry
 @Component
 class Index2 {
@@ -14,8 +27,8 @@ class Index2 {
 
     func initSpring() {
         spring.setVelocity(10.0)
-        spring.setSpringConfig(rebound.SpringConfig.coastingConfigWithOrigamiFriction(origamiFriction))
-        let springConfig: rebound.SpringConfig = spring.getSpringConfig()
+        spring.setSpringConfig(SpringConfig.coastingConfigWithOrigamiFriction(origamiFriction))
+        let springConfig: SpringConfig = spring.getSpringConfig()
         frictionSpringVal = springConfig.friction
         let imageSizeFunc: (Float64) -> Unit = {
             v: Float64 =>
@@ -27,12 +40,12 @@ class Index2 {
     }
 
     func setFriction(frictionval: Float64) {
-        spring.setSpringConfig(rebound.SpringConfig.coastingConfigWithOrigamiFriction(frictionval))
+        spring.setSpringConfig(SpringConfig.coastingConfigWithOrigamiFriction(frictionval))
         frictionSpringVal = spring.getSpringConfig().friction
         imageSize = 1.0
     }
 
-    func render() {
+    func build() {
         Stack(Alignment.Bottom) {
           Image(@r(app.media.landscape))
             .width(100.percent)

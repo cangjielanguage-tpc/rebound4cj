@@ -2,8 +2,12 @@
  * @Copyright (c) Huawei Technologies Co., Ltd. 2024-2024. All rights reserved.
  */
 
-let springSystem: rebound.BaseSpringSystem = rebound.BaseSpringSystem(AnimationLooper())
-let spring: rebound.Spring = springSystem.createSpring()
+package ohos_app_cangjie_entry
+
+import rebound.rebound.*
+
+let springSystem: BaseSpringSystem = BaseSpringSystem(AnimationLooper())
+let spring: Spring = springSystem.createSpring()
 
 public class MySpringListener <: SimpleSpringListener {
     var str: String = ""
@@ -16,7 +20,7 @@ public class MySpringListener <: SimpleSpringListener {
 
     public func onSpringUpdate(spring: Spring): Unit {
         let value: Float64 = spring.getCurrentValue()
-        let v = rebound.SpringUtil.mapValueFromRangeToRange(value, 0.0, 1.0, 1.0, 0.5)
+        let v = SpringUtil.mapValueFromRangeToRange(value, 0.0, 1.0, 1.0, 0.5)
         imageSizeFunc(v)
     }
 

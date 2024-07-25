@@ -2,6 +2,19 @@
  * @Copyright (c) Huawei Technologies Co., Ltd. 2024-2024. All rights reserved.
  */
 
+package ohos_app_cangjie_entry
+
+import ohos.base.*
+import ohos.component.*
+import ohos.state_manage.*
+import ohos.state_macro_manage.*
+import ohos.concurrency.*
+import ohos.state_macro_manage.Entry
+import ohos.state_macro_manage.Component
+import ohos.state_macro_manage.State
+import ohos.state_macro_manage.r
+import rebound.rebound.*
+
 @Entry
 @Component
 class Index1 {
@@ -21,9 +34,9 @@ class Index1 {
     @State
     var showComponent: Bool = false
 
-    func initSpring(): rebound.SpringConfig {
-        spring.setSpringConfig(rebound.SpringConfig.defaultConfig)
-        let springConfig: rebound.SpringConfig = spring.getSpringConfig()
+    func initSpring(): SpringConfig {
+        spring.setSpringConfig(SpringConfig.defaultConfig)
+        let springConfig: SpringConfig = spring.getSpringConfig()
         tensionSpringVal = springConfig.tension
         frictionSpringVal = springConfig.friction
         let imageSizeFunc: (Float64) -> Unit = {
@@ -38,19 +51,19 @@ class Index1 {
 
     func setTension(tensionval: Float64) {
         let springConfig = initSpring()
-        springConfig.tension = rebound.OrigamiValueConverter.tensionFromOrigamiValue(tensionval)
+        springConfig.tension = OrigamiValueConverter.tensionFromOrigamiValue(tensionval)
         tensionSpringVal = springConfig.tension
         imageSize = 1.0
     }
 
     func setFriction(frictionval: Float64) {
         let springConfig = initSpring()
-        springConfig.friction = rebound.OrigamiValueConverter.frictionFromOrigamiValue(frictionval)
+        springConfig.friction = OrigamiValueConverter.frictionFromOrigamiValue(frictionval)
         frictionSpringVal = springConfig.friction
         imageSize = 1.0
     }
 
-    func render() {
+    func build() {
         Stack(Alignment.Bottom) {
             Image(@r(app.media.landscape))
                 .width(100.percent)
