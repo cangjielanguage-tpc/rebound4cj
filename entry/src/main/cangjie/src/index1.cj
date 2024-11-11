@@ -13,7 +13,7 @@ import ohos.state_macro_manage.Entry
 import ohos.state_macro_manage.Component
 import ohos.state_macro_manage.State
 import ohos.state_macro_manage.r
-import rebound.rebound.*
+import rebound.*
 
 @Entry
 @Component

@@ -6,7 +6,7 @@ import std.unittest.testmacro.*
 import std.collection.*
 import std.time.*
 import std.random.*
-import rebound.rebound.*
+import rebound.*
 
 main(): Int64 {
     var test = TestInitSpring()
@@ -36,7 +36,7 @@ public class TestInitSpring {
             s.setEndValue(1.0)
             s.setEndValue(0.0)
         }
-        let end = Duration.since(start).toNanoseconds()
+        let end = (DateTime.now() - start).toNanoseconds()
         println("TestSuiteInitSpring_"  + "${num}" + " : " + "${end / num}" + " ns/op")
     }
 
@@ -52,7 +52,7 @@ public class TestInitSpring {
             s.setEndValue(1.0)
             s.setEndValue(0.0)
         }
-        let end = Duration.since(start).toNanoseconds()
+        let end = (DateTime.now() - start).toNanoseconds()
         println("TestSuiteInitSpring_"  + "${num}" + " : " + "${end / num}" + " ns/op")
     }
 
@@ -68,7 +68,7 @@ public class TestInitSpring {
             s.setEndValue(1.0)
             s.setEndValue(0.0)
         }
-        let end = Duration.since(start).toNanoseconds()
+        let end = (DateTime.now() - start).toNanoseconds()
         println("TestSuiteInitSpring_"  + "${num}" + " : " + "${end / num}" + " ns/op")
     }
 
@@ -84,7 +84,7 @@ public class TestInitSpring {
             s.setEndValue(1.0)
             s.setEndValue(0.0)
         }
-        let end = Duration.since(start).toNanoseconds()
+        let end = (DateTime.now() - start).toNanoseconds()
         println("TestSuiteInitSpring_"  + "${num}" + " : " + "${end / num}" + " ns/op")
     }
 
@@ -100,7 +100,7 @@ public class TestInitSpring {
             s.setEndValue(1.0)
             s.setEndValue(0.0)
         }
-        let end = Duration.since(start).toNanoseconds()
+        let end = (DateTime.now() - start).toNanoseconds()
         println("TestSuiteInitSpring_"  + "${num}" + " : " + "${end / num}" + " ns/op")
     }
 }

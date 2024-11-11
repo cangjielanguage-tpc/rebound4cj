@@ -2,7 +2,7 @@
  * @Copyright (c) Huawei Technologies Co., Ltd. 2024-2024. All rights reserved.
  */
 
-package rebound.rebound
+package rebound
 
 public class SpringConfig <: Hashable & Equatable<SpringConfig> {
     public var friction: Float64 = 0.0

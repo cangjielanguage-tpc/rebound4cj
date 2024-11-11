@@ -2,7 +2,7 @@
  * @Copyright (c) Huawei Technologies Co., Ltd. 2024-2024. All rights reserved.
  */
 
-package rebound.rebound
+package rebound
 
 public interface SpringListener <: Hashable & Equatable<SpringListener> {
     func onSpringUpdate(spring: Spring): Unit

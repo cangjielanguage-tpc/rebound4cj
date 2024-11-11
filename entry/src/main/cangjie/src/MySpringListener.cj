@@ -4,7 +4,7 @@
 
 package ohos_app_cangjie_entry
 
-import rebound.rebound.*
+import rebound.*
 
 let springSystem: BaseSpringSystem = BaseSpringSystem(AnimationLooper())
 let spring: Spring = springSystem.createSpring()

@@ -6,7 +6,7 @@ import std.random.*
 import std.unittest.*
 import std.unittest.testmacro.*
 import std.collection.*
-import rebound.rebound.*
+import rebound.*
 
 main(): Int64 {
     var test = TestSpringListener()
@@ -16,6 +16,7 @@ main(): Int64 {
 
 @Test
 public class TestSpringListener{
+
     /******public func loop(ellapsedMillis: Float64): Unit*****/
     @TestCase
     func test_BaseSpringSystem_Loop_01(): Unit {
