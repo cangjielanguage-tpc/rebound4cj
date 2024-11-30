@@ -1,6 +1,6 @@
-// 3rd_party_lib:rebound4ohos/rebound/src/main/cangjie/build/rebound
+// 3rd_party_lib:rebound4cj/rebound/src/main/cangjie/target/release/rebound
 
-import rebound.rebound.*
+import rebound.*
 import std.random.*
 @Test
 public class TestSpringListener{
@@ -22,8 +22,8 @@ public class TestSpringListener{
         springOri.removeListener(listeners02)
         springOri.setCurrentValue(Float64(15))
         baseSpringSystem.loop(Float64(4567.888))
-        @Assert(listeners01.getFlag(),"onSpringUpdate")
-        @Assert(listeners02.getFlag(),"onSpringUpdate")
+        @Assert(listeners01.getFlag(),"")
+        @Assert(listeners02.getFlag(),"")
     }
 }
 public class SubSpringListener <:SpringListener{
@@ -58,6 +58,9 @@ public class SubSpringListener <:SpringListener{
     }
 }
 public class SubSpringSystemListener <: SpringSystemListener{
+
+    let r = Random().nextInt64()
+
     public func onBeforeIntegrate(springSystem:BaseSpringSystem):Unit{
         springSystem.createSpring()
     }
@@ -65,16 +68,21 @@ public class SubSpringSystemListener <: SpringSystemListener{
         springSystem.createSpring()
     }
     public operator func !=(that: SpringSystemListener): Bool {
-        return !(this == that)
+        if (this.hashCode() != that.hashCode()) {
+            return true
+        }
+        return false
     }
     public operator func ==(that: SpringSystemListener): Bool {
-        return true
+        if (this.hashCode() == that.hashCode()) {
+            return true
+        }
+        return false
     }
 
     @OverflowWrapping
     public override func hashCode(): Int64 {
-        let r=Random().nextInt64()
-        var has: Int64 = 31*r*31
+        var has: Int64 = 31 * r * 31
         return has
     }
 }

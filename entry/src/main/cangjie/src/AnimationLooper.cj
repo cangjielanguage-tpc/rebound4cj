@@ -6,7 +6,7 @@ package ohos_app_cangjie_entry
 
 import std.time.*
 import std.sync.*
-import rebound.rebound.*
+import rebound.*
 
 public class AnimationLooper <: SpringLooper {
 

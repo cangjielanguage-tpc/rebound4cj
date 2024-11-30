@@ -6,7 +6,7 @@ import std.random.*
 import std.unittest.*
 import std.unittest.testmacro.*
 import std.collection.*
-import rebound.rebound.*
+import rebound.*
 
 main(): Int64 {
     var test = TestSpringListener()

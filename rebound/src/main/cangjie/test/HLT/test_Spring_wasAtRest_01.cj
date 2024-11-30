@@ -1,7 +1,6 @@
-// 3rd_party_lib:rebound4ohos/rebound/src/main/cangjie/build/rebound
+// 3rd_party_lib:rebound4cj/rebound/src/main/cangjie/target/release/rebound
 
-import rebound.rebound.*
-import math.*
+import rebound.*
 @Test
 public class TestSpringAtRest{
     /**

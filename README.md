@@ -5,7 +5,7 @@
 <p align="center">
 <img alt="" src="https://img.shields.io/badge/release-v0.0.1-brightgreen" style="display: inline-block;" />
 <img alt="" src="https://img.shields.io/badge/build-pass-brightgreen" style="display: inline-block;" />
-<img alt="" src="https://img.shields.io/badge/cjc-v0.53.4-brightgreen" style="display: inline-block;" />
+<img alt="" src="https://img.shields.io/badge/cjc-v0.53.13-brightgreen" style="display: inline-block;" />
 <img alt="" src="https://img.shields.io/badge/cjcov-90.6%25-brightgreen" style="display: inline-block;" />
 <img alt="" src="https://img.shields.io/badge/project-open-brightgreen" style="display: inline-block;" />
 </p>
@@ -252,7 +252,10 @@ class Index1 {
 
 在下述版本验证通过：
 
-DevEco Studio NEXT Developer Beta2(5.0.3.500), SDK:OHCangjie0.10.0-OH5.0.0.31。
+在下述版本验证通过：
+
+    DevEco Studio NEXT Beta1(5.0.3.910)
+    Cangjie Support Plugin 5.0.3.906
 
 ## 开源协议
 

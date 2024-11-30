@@ -2,7 +2,7 @@
  * @Copyright (c) Huawei Technologies Co., Ltd. 2024-2024. All rights reserved.
  */
 
-package rebound.rebound
+package rebound
 
 public class SynchronousLooper <: SpringLooper {
     public static var SIXTY_FPS = 16.6667

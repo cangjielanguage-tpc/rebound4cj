@@ -16,6 +16,6 @@ internal import ohos.ability.LaunchParam
 internal import ohos.window.WindowStage
 internal import ohos.prompt_action.*
 internal import ohos.system_date_time.*
-internal import rebound.rebound.*
+internal import rebound.*
 internal import ohos.concurrency.*
 internal import cj_res_entry.*

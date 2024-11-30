@@ -2,7 +2,7 @@
  * @Copyright (c) Huawei Technologies Co., Ltd. 2024-2024. All rights reserved.
  */
 
-package rebound.rebound
+package rebound
 
 internal import std.math.abs
 internal import std.collection.HashSet

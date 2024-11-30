@@ -1,6 +1,7 @@
-// 3rd_party_lib:rebound4ohos/rebound/src/main/cangjie/build/rebound
+// 3rd_party_lib:rebound4cj/rebound/src/main/cangjie/target/release/rebound
 
-import rebound.rebound.*
+import rebound.*
+import std.random.*
 @Test
 public class TestBaseSpringSystemRemoveAllListeners{
     /******public func removeAllListeners(): Unit*****/
@@ -39,6 +40,9 @@ public class TestBaseSpringSystemRemoveAllListeners{
 }
 
 public class SubSpringSystemListener <: SpringSystemListener{
+
+    let r = Random().nextInt64()
+
     public func onBeforeIntegrate(springSystem:BaseSpringSystem):Unit{
         springSystem.createSpring()
     }
@@ -46,15 +50,21 @@ public class SubSpringSystemListener <: SpringSystemListener{
         springSystem.createSpring()
     }
     public operator func !=(that: SpringSystemListener): Bool {
-        return !(this == that)
+        if (this.hashCode() != that.hashCode()) {
+            return true
+        }
+        return false
     }
     public operator func ==(that: SpringSystemListener): Bool {
-        return true
+        if (this.hashCode() == that.hashCode()) {
+            return true
+        }
+        return false
     }
 
     @OverflowWrapping
     public override func hashCode(): Int64 {
-        var has: Int64 = 31
+        var has: Int64 = 31 * r * 31
         return has
     }
 }
