@@ -1,13 +1,13 @@
-## rebound4ohos 库
+## rebound4cj 库
 
 ### 介绍
-rebound4ohos 是一个模拟弹簧动力学，用于驱动物理动画的库。
+rebound4cj 是一个模拟弹簧动力学，用于驱动物理动画的库。
 
-### 1 创建弹簧对象，设置弹簧树形，实现弹簧动画效果
+### 1 创建弹簧对象，设置弹簧配置项，实现弹簧动画效果
 
 前置条件：NA
 场景：
-创建和维护弹簧对象。通过配置张力、摩擦、动画值来创建弹簧对象，并添加监听器以接收弹簧位置
+创建和维护弹簧对象。通过配置张力、摩擦来创建弹簧对象，并添加监听器以接收弹簧位置
 约束：NA 
 性能： NA
 可靠性： NA
@@ -68,9 +68,9 @@ public class Spring {
     public func addListener(newListener: SpringListener): Spring
 
     /**
-    * 设置 endValue 值以确定弹簧的位移
+    * 设置 endValue 值以确定弹簧停止时所处的位置
     *
-    * @param endValue - rest 值
+    * @param endValue - 弹簧运动静止时的目标值。注意：因为弹簧的"物理特性"， endValue 的值期望设置在 0.0 - 1.0 之间，若小于 0.0 或大于 1.0，会导致弹簧失去其物理特性，没有实际意义。 0.0 表示着弹簧当前处于完全松弛状态(没有拉伸或挤压)， 1.0 表示弹簧当前处于最大形变状态(完全拉伸或挤压到极限)。弹簧的弹性恢复过程可以通过从 1.0 逐渐变回 0.0 来表示
     *
     * @return 返回 Spring 弹簧对象
     */
@@ -112,9 +112,9 @@ public class BaseSpringSystem {
     public func getAllSprings(): ArrayList<Spring>
 
     /**
-    * 循环系统直到空闲
+    * 用于处理循环系统相关的逻辑，例如动画循环器(在每一帧动画更新时将被调用)
     *
-    * @param ellapsedMillis - 上次更新以来的增量时间
+    * @param ellapsedMillis - 从开始到当前时刻已经经过的毫秒数
     *
     */
     public func loop(ellapsedMillis: Float64): Unit
@@ -523,7 +523,7 @@ public class SpringUtil {
 }
 ```
 
-SteppingLooper 步进循环器
+SteppingLooper 步进循环器，以固定的时间步长来逐步推进模拟，可以得到在一段时间内某个物体运动的轨迹
 
 ```cangjie
 
@@ -556,7 +556,7 @@ public class SteppingLooper <: SpringLooper {
 }
 ```
 
-SynchronousLooper 同步循环器
+SynchronousLooper 同步循环器，提供了一种同步机制，使其在模拟过程能够与其它外部事件或系统进行同步
 
 ```cangjie
 public class SynchronousLooper <: SpringLooper {
