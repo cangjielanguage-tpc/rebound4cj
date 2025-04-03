@@ -1,13 +1,9 @@
-/*
- * @Copyright (c) Huawei Technologies Co., Ltd. 2024-2024. All rights reserved.
- */
-
 package ohos_app_cangjie_entry
 
-import ohos.base.*
-import ohos.component.*
-import ohos.state_manage.*
-import ohos.state_macro_manage.*
+internal import ohos.base.AppLog
+internal import ohos.ability.AbilityStage
+internal import ohos.ability.LaunchReason
+internal import cj_res_entry.app
 
 class MainAbility <: Ability {
     public init() {
@@ -28,9 +24,3 @@ class MainAbility <: Ability {
         windowStage.loadContent("Index")
     }
 }
-
-func createAbility(): MainAbility {
-    MainAbility()
-}
-
-let ABILITY_REGISTER_RESULT = Ability.registerCreator("CangjieAbility", createAbility)
