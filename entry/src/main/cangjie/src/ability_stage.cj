@@ -1,22 +1,12 @@
-/*
- * @Copyright (c) Huawei Technologies Co., Ltd. 2024-2024. All rights reserved.
- */
-
 package ohos_app_cangjie_entry
 
-import ohos.base.*
-import ohos.component.*
-import ohos.state_manage.*
-import ohos.state_macro_manage.*
+internal import ohos.ability.Ability
+internal import ohos.ability.Want
+internal import ohos.ability.LaunchParam
+internal import ohos.window.WindowStage
 
 class MyAbilityStage <: AbilityStage {
     public override func onCreate(): Unit {
         AppLog.info("MyAbilityStage onCreated.")
     }
 }
-
-func createAbilityStage(): MyAbilityStage {
-    MyAbilityStage()
-}
-
-let ABILITY_STAGE_REGISTER_RESULT = AbilityStage.registerCreator("entry", createAbilityStage)
