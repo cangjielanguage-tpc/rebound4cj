@@ -6,7 +6,7 @@
   "author": "",
   "license": "",
   "dependencies": {
-    "rebound": "file:../rebound"
+    "@cangjie-tpc/rebound": "file:../rebound"
   }
 }
 

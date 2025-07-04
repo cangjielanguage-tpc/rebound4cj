@@ -4,7 +4,5 @@
 /build
 /.cxx
 /.test
-/oh-package-lock.json5
-/src/main/cangjie/.vscode/
-/src/main/cangjie/.cache/
-/cj_res/
+**/IDL_Dependencies_List~
+**/build-script-cache

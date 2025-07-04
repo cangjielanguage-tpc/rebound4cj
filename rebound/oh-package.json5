@@ -1,10 +1,12 @@
 {
-  "name": "rebound",
-  "version": "1.0.0",
-  "description": "Please describe the basic information.",
+  "name": "@cangjie-tpc/rebound",
+  "version": "2.0.0",
+  "description": "实现弹簧的动画效果",
   "main": "",
-  "author": "",
+  "author": "cangjie-tpc",
+  "types": "./Index.d.ets",
   "license": "BSD License",
+  "repository": "https://gitcode.com/Cangjie-TPC/rebound4cj.git",
   "dependencies": {
   }
 }
