@@ -6,7 +6,7 @@ package rebound
 
 class newMap {
 
-    var arr: Array<(String, Spring)> = Array<(String, Spring)>(8, item: ("", unsafe {zeroValue<Spring>()}))
+    var arr: Array<(String, Spring)> = Array<(String, Spring)>(8, repeat: ("", unsafe {zeroValue<Spring>()}))
     var map: HashMap<String, Spring> = HashMap<String, Spring>()
     var size: Int64 = 0
 
@@ -26,7 +26,7 @@ class newMap {
             }
             return
         }
-        map.putIfAbsent(key, value)
+        map.addIfAbsent(key, value)
         size++
     }
 

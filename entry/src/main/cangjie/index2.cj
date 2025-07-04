@@ -21,7 +21,7 @@ class Index2 {
 
     @State var frictionSpringVal: Float64  = 0.0
     @State var imageSize: Float64 = 1.0
-    @State var imgPath: CJResource = @r(app.media.arrow_up)
+    @State var imgPath: AppResource = @r(app.media.arrow_up)
     @State var showComponent: Bool = false
     @State var origamiFriction: Float64  = 10.0
 

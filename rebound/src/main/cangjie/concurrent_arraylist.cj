@@ -8,7 +8,7 @@ internal import std.sync.ReentrantMutex
 
 public class ConcurrentArrayList<T> where T <: Hashable & Equatable<T> {
 
-    var arr: Array<T> = Array<T>(16, item: unsafe {zeroValue<T>()})
+    var arr: Array<T> = Array<T>(16, repeat: unsafe {zeroValue<T>()})
     var size: Int64 = 0
     let lock: ReentrantMutex = ReentrantMutex()
 
@@ -34,7 +34,7 @@ public class ConcurrentArrayList<T> where T <: Hashable & Equatable<T> {
                 size++
                 return
             }
-            let arr2 = Array<T>(insideSize * 2, item: unsafe {zeroValue<T>()})
+            let arr2 = Array<T>(insideSize * 2, repeat: unsafe {zeroValue<T>()})
             arr.copyTo(arr2, 0, 0, insideSize)
             arr = arr2
             arr[size] = value
@@ -68,7 +68,7 @@ public class ConcurrentArrayList<T> where T <: Hashable & Equatable<T> {
     func clear(): Unit {
         synchronized(lock) {
             size = 0
-            arr = Array<T>(16, item: unsafe {zeroValue<T>()})
+            arr = Array<T>(16, repeat: unsafe {zeroValue<T>()})
         }
     }
 }

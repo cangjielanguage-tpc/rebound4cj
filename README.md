@@ -3,9 +3,9 @@
 </div>
 
 <p align="center">
-<img alt="" src="https://img.shields.io/badge/release-v1.0.1-brightgreen" style="display: inline-block;" />
+<img alt="" src="https://img.shields.io/badge/release-v1.0.3-brightgreen" style="display: inline-block;" />
 <img alt="" src="https://img.shields.io/badge/build-pass-brightgreen" style="display: inline-block;" />
-<img alt="" src="https://img.shields.io/badge/cjc-v0.53.18-brightgreen" style="display: inline-block;" />
+<img alt="" src="https://img.shields.io/badge/cjc-v1.1.3-brightgreen" style="display: inline-block;" />
 <img alt="" src="https://img.shields.io/badge/cjcov-90.6%25-brightgreen" style="display: inline-block;" />
 <img alt="" src="https://img.shields.io/badge/project-open-brightgreen" style="display: inline-block;" />
 </p>
@@ -54,7 +54,7 @@ rebound4cj 是一个模拟弹簧动力学，作用于驱动物理动画
 
 ### 接口说明
 
-主要类和函数接口说明详见 [API](doc/feature_api.md)
+主要类和函数接口说明详见 [API](https://gitcode.com/Cangjie-TPC/rebound4cj/blob/develop/doc/feature_api.md)
 
 ## 使用说明
 
@@ -63,7 +63,7 @@ rebound4cj 是一个模拟弹簧动力学，作用于驱动物理动画
 1. 通过 module 引入
     1. 克隆下载项目
     2. 将 rebound 模块拷贝到应用项目下
-    3. 修改自身应用 entry 下的 oh-package.json5 文件，在 dependencies 字段添加 "rebound": "file:../rebound"
+    3. 修改自身应用 entry 下的 oh-package.json5 文件，在 dependencies 字段添加 "@cangjie-tpc/rebound": "file:../rebound"
        ```json
        {
           "name": "entry",
@@ -73,14 +73,15 @@ rebound4cj 是一个模拟弹簧动力学，作用于驱动物理动画
           "author": "",
           "license": "",
          "dependencies": {
-             "rebound": "file:../rebound"
+             "@cangjie-tpc/rebound": "file:../rebound"
          }
        }
        ```
-    4. 修改自身应用 entry/src/main/cangjie 下的 cjpm.toml 文件，在 [dependencies] 字段下添加 rebound = {path = "../../../../rebound/src/main/cangjie", version = "1.0.0"}
+    4. 修改自身应用 entry/src/main/cangjie 下的 cjpm.toml 文件，在 [dependencies] 字段下添加 rebound = {path = "${cangjie_tpc_rebound}"}
        ```toml
        [dependencies]
-           rebound = {path = "../../../../rebound/src/main/cangjie"}
+         [dependencies.rebound]
+           path = "${cangjie_tpc_rebound}"
        ```
     5. 在项目中使用 import rebound.* 引用 rebound 项目
        ```cangjie
@@ -250,14 +251,18 @@ class Index1 {
 
 ## 约束与限制
 
-在下述版本验证通过：
+版本验证通过：
 
-    DevEco Studio 5.0.9.300
-    DevEco Studio Cangjie Plugin 5.0.9.300
+| 编号 | 依赖构建工具                                       | 版本号       |
+|----|----------------------------------------------|-----------|
+| 1  | **DevEco Studio**                            | 6.1.1.280 |
+| 2  | **cjc**                                      | v1.1.3    |
+| 3  | **DevEco Studio-Cangjie Plugin 6.1.1 Beta1** | 6.1.1.280 |
+| 4  | **compatibility-sdk-6.1.1.280**              | 6.1.1.280 |
 
 ## 开源协议
 
-本项目基于 [BSD License](./LICENSE) ，请自由的享受和参与开源。
+本项目基于 [BSD License](https://gitcode.com/Cangjie-TPC/rebound4cj/blob/develop/LICENSE) ，请自由的享受和参与开源。
 
 ## 参与贡献
 

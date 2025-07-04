@@ -24,7 +24,7 @@ public class SpringConfigRegistry {
         if (mSpringConfigMap.contains(springConfig)) {
             return false
         }
-        mSpringConfigMap.put(springConfig, configName)
+        mSpringConfigMap.add(springConfig, configName)
         return true
     }
 

@@ -57,7 +57,7 @@ public class Spring <: Hashable & Equatable<Spring> {
     func clearAllListeners(): Unit {
         let optList: ArrayList<SpringListener> = ArrayList<SpringListener>()
         for (k in mListeners.iterators()) {
-            optList.append(k)
+            optList.add(k)
         }
         for (i in 0..optList.size) {
             mListeners.remove(optList[i])

@@ -18,4 +18,4 @@ internal import ohos.prompt_action.*
 internal import ohos.system_date_time.*
 internal import rebound.*
 internal import ohos.concurrency.*
-internal import cj_res_entry.*
+internal import ohos.resource_manager.*

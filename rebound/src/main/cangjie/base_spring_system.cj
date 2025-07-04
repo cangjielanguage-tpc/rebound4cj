@@ -66,7 +66,7 @@ public class BaseSpringSystem {
             if (spring.systemShouldAdvance()) {
                 spring.advance(deltaTime / 1000.0)
             } else {
-                optArr.append(spring)
+                optArr.add(spring)
             }
         }
         for (i in 0..optArr.size) {
@@ -113,7 +113,7 @@ public class BaseSpringSystem {
     public func removeAllListeners(): Unit {
         let optList: ArrayList<SpringSystemListener> = ArrayList<SpringSystemListener>()
         for (k in mListeners.iterators()) {
-            optList.append(k)
+            optList.add(k)
         }
         for (i in 0..optList.size) {
             mListeners.remove(optList[i])

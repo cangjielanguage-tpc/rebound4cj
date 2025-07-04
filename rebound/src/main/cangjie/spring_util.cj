@@ -4,9 +4,6 @@
 
 package rebound
 
-internal import std.math.max
-internal import std.math.min
-
 public class SpringUtil {
 
     public static func mapValueFromRangeToRange(value: Float64, fromLow: Float64, fromHigh: Float64, toLow: Float64, toHigh: Float64): Float64 {
